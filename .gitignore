@@ -52,3 +52,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Databases
+*.sqlite3
+
+# Project Assets
+public/static
+public/media
