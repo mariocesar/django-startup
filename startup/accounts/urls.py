@@ -11,8 +11,8 @@ urlpatterns = patterns(
     '',
     url(r'^$', login_required(RedirectView.as_view(url=reverse_lazy('account_detail'), permanent=False))),
     url(r'^create/$', CreateUser.as_view(), name='account_create'),
-    url(r'^detail/$', DetailUser.as_view(), name='account_detail'),
-    url(r'^update/$', UpdateUser.as_view(), name='account_update'),
+    url(r'^detail/$', login_required(DetailUser.as_view()), name='account_detail'),
+    url(r'^update/$', login_required(UpdateUser.as_view()), name='account_update'),
     url(r'', include('django.contrib.auth.urls')),
 )
 
