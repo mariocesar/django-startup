@@ -26,6 +26,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+THUMBNAIL_DEBUG = True
+
 ALLOWED_HOSTS = []
 
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'sorl.thumbnail',
 )
 
 MIDDLEWARE_CLASSES = (

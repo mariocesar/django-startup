@@ -1,9 +1,15 @@
 {% extends 'layouts/base.html' %}
-{% load i18n %}
+{% load i18n thumbnail %}
 
 {% block body %}
 
-    <h2>Welcome back {{ user }}</h2>
+    <h2>Welcome back {{ user }}!</h2>
+
+    {% thumbnail user.photo "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" alt="{{ user }} Photo" width="{{ im.width }}" height="{{ im.height }}"/>
+    {% empty %}
+        <a href="{% url 'account_update' %}">{% trans 'Edit your profile to have a user photo.' %}</a>
+    {% endthumbnail %}
 
     <ul>
         <li><a href="{% url 'account_update' %}">{% trans 'Edit your Account' %}</a></li>

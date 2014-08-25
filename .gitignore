@@ -58,3 +58,6 @@ docs/_build/
 # Project Assets
 public/static
 public/media
+
+# Developer local settings
+startup/settings/local.py
