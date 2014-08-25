@@ -8,8 +8,11 @@
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
-        <input type="submit" value="Register"/>
+        {% if object %}
+            <input type="submit" value="{% trans 'Update' %}"/>
+        {% else %}
+            <input type="submit" value="{% trans 'Sign up' %}"/>
+        {% endif %}
     </form>
 
 {% endblock %}

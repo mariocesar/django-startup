@@ -39,8 +39,11 @@
             </fieldset>
 
             <p>
-                <input type="submit" value="{% trans 'Login' %}"/>
+                <input type="submit" value="{% trans 'Log In' %}"/> or <a href="{% url 'account_create' %}">{% trans 'Sign up' %}</a>
             </p>
+
+            <hr/>
+            <p><a href="{% url 'password_reset' %}">{% trans 'Forgot your password?' %}</a></p>
 
             <script type="text/javascript">document.getElementById("id_username").focus();</script>
         </div>
