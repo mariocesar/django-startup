@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'startup.core',
+    'startup.accounts',
+
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,9 +42,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'startup.core',
-    'startup.accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,4 +116,4 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
-LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGIN_REDIRECT_URL = '/accounts/detail/'

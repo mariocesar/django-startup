@@ -7,6 +7,6 @@ urlpatterns = patterns(
     '',
     url(r'^admin/docs/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('startup.accounts.urls')),
     url(r'^$', TemplateView.as_view(template_name='landing.html'), name='landing'),
 )

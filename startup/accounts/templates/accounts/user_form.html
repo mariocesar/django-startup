@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+
+{% block body %}
+
+    <h2>Welcome!</h2>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Register"/>
+    </form>
+
+{% endblock %}

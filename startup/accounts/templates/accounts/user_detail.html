@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+
+{% block body %}
+
+    <h2>Welcome back {{ user }}</h2>
+
+    <ul>
+        <li><a href="{% url 'account_update' %}">{% trans 'Edit your Account' %}</a></li>
+        <li><a href="{% url 'password_change' %}">{% trans 'Change your Password' %}</a></li>
+    </ul>
+
+{% endblock %}

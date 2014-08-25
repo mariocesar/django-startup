@@ -10,8 +10,13 @@
 <header>
     <nav>
         <a href="{% url 'landing' %}">Start</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="#register">Register</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'account_detail' %}">[{{ user }}]</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'account_create' %}">Register</a>
+        {% endif %}
     </nav>
 </header>
 {% block body %}{% endblock %}

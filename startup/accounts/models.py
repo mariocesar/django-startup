@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 
 from django.db import models
 from django.core import validators
+from django.conf import settings
 
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
@@ -51,6 +52,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def full_name(self):
         return self.get_full_name()
+
+    def get_absolute_url(self):
+        return settings.LOGIN_REDIRECT_URL
 
     def get_full_name(self):
         """
