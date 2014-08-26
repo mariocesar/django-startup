@@ -6,8 +6,8 @@ module.exports = function (grunt) {
 
     // configurable paths
     var config = {
-        app: '.',
-        dist: '../'
+        app: 'src',
+        dist: 'dist'
     };
 
     grunt.initConfig({
@@ -25,8 +25,7 @@ module.exports = function (grunt) {
                         dot: true,
                         src: [
                             '.tmp',
-                            '<%= config.dist %>/*',
-                            '!../src*'
+                            '<%= config.dist %>/*'
                         ]
                     }
                 ]
