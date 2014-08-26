@@ -58,6 +58,8 @@ docs/_build/
 # Project Assets
 public/static
 public/media
+bower_components/
+node_modules/
 
 # Developer local settings
 startup/settings/local.py

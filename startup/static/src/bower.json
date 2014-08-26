@@ -1,0 +1,11 @@
+{
+  "name": "django-startup-assets",
+  "version": "0.1",
+  "dependencies": {
+    "bootstrap": "~3.0.0-rc1",
+    "font-awesome": "~3.2.1",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.9.1"
+  },
+  "devDependencies": {}
+}
