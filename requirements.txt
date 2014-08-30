@@ -5,3 +5,4 @@ docutils==0.12
 pytz==2014.4
 six==1.7.3
 sqlparse==0.1.11
+sorl-thumbnail==11.12.1b

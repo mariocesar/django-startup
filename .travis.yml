@@ -1,5 +1,6 @@
 language: python
 
-install: make install
+install:
+  - make install
 
 script: make test
