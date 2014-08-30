@@ -2,3 +2,11 @@ A project startup template. Bootstrap Themed, User management, Landing Page and 
 
 django-startup
 ==============
+
+
+Screenshots
+-----------
+
+.. image:: https://raw.githubusercontent.com/mariocesar/django-startup/master/docs/screenshot-landing.png
+    :alt: Landing Screenshot
+    :scale: 50%

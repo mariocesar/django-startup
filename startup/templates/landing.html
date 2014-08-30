@@ -1,5 +1,85 @@
 {% extends 'layouts/base.html' %}
+{% load staticfiles %}
 
+{% block title %}Getting Started with "Project Name"{% endblock %}
+{% block styles %}
+    {{ block.super }}
+    <style>
+        html,
+        body {
+            height: 100%;
+            color: #fff;
+            background-image: url('{% static 'dist/images/map-unsplash.jpg' %}');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: #000;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .site-wrapper {
+            display: table;
+            width: 100%;
+            height: 100%; /* For at least Firefox */
+            min-height: 100%;
+            -webkit-box-shadow: inset 0 0 600px rgba(0, 0, 0, .9);
+            box-shadow: inset 0 0 600px rgba(0, 0, 0, .9);
+        }
+
+        h3 small {
+            color: #fff;
+        }
+
+        a {
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        a:hover, a:visited {
+            color: #fff;
+        }
+
+        .site-wrapper-inner {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .jumbotron {
+            margin-right: auto;
+            margin-left: auto;
+            background: transparent;
+            padding: 30px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+        }
+    </style>
+{% endblock %}
 {% block body %}
-    <h1>Welcome</h1>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="jumbotron">
+                <h1>Project Name</h1>
+
+                <h2>The worlds greatest product. <br/>for your startup, company, or team.</h2>
+
+                <ul>
+                    <li>Add your business or persona.</li>
+                    <li>Feature</li>
+                    <li>Feature</li>
+                </ul>
+
+                <h3>
+                    <a class="btn btn-danger" href="{% url 'account_create' %}"> Get started</a> with a
+                    <strong style="font-weight:900">14-day free trial.</strong>
+                    <small>No credit card required. One minute to sign up.</small>
+                </h3>
+                {% include 'partials/footer.html' %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

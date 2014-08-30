@@ -10,6 +10,9 @@ urlpatterns = patterns(
     url(r'^admin/docs/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('startup.accounts.urls')),
+    url(r'^privacy/$', TemplateView.as_view(template_name='privacy.html'), name='privacy_page'),
+    url(r'^terms/$', TemplateView.as_view(template_name='terms.html'), name='terms_page'),
+
     url(r'^$', TemplateView.as_view(template_name='landing.html'), name='landing'),
 )
 
