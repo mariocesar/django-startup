@@ -39,3 +39,6 @@ env:
 var:
 	mkdir -p var/cache
 	mkdir -p var/log
+
+test:
+	$(PYTHON) manage.py test

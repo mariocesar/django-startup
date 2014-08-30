@@ -3,6 +3,8 @@ A project startup template. Bootstrap Themed, User management, Landing Page and 
 django-startup
 ==============
 
+.. image:: https://travis-ci.org/mariocesar/django-rocket.svg?branch=master
+    :target: https://travis-ci.org/mariocesar/django-rocket
 
 Screenshots
 -----------
