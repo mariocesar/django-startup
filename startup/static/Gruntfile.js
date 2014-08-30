@@ -5,53 +5,82 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // configurable paths
-    var config = {
-        app: 'src',
+    var staticsConfig = {
+        src: 'src',
         dist: 'dist'
     };
 
     grunt.initConfig({
-        config: config,
+        config: staticsConfig,
         watch: {
-            recess: {
-                files: ['<%= config.app %>/styles/{,*/}*.less'],
-                tasks: ['recess']
+            less: {
+                files: ['<%= config.src %>/styles/**/*.less'],
+                tasks: ['clean:styles', 'less']
+            },
+            coffee: {
+                files: ['<%= config.src %>/coffee/**/*.coffee'],
+                tasks: ['coffee']
+            },
+            uglify: {
+                files: ['<%= config.src %>/scripts/**/*.js'],
+                tasks: ['clean:scripts', 'uglify']
+            },
+            images: {
+                files: ['<%= config.src %>/images/**/*'],
+                tasks: ['clean:images', 'imagemin', 'copy']
             }
         },
         clean: {
-            dist: {
-                files: [
-                    {
-                        dot: true,
-                        src: [
-                            '.tmp',
-                            '<%= config.dist %>/*'
-                        ]
-                    }
-                ]
-            },
-            server: '.tmp'
+            styles: [ '<%= config.dist %>/styles/' ],
+            scripts: [ '<%= config.dist %>/scripts/' ],
+            images: [ '<%= config.dist %>/images/']
         },
-        recess: {
-            dist: {
+        less: {
+            development: {
                 options: {
-                    compile: true
+                    compress: false,
+                    optimization: 1,
+                    sourceMap: false,
+                    outputSourceFiles: true
                 },
                 files: {
-                    '<%= config.app %>/styles/main.css': ['<%= config.app %>/styles/main.less']
+                    '<%= config.dist %>/styles/main.css': ['<%= config.src %>/styles/main.less']
+                }
+            },
+            production: {
+                options: {
+                    compress: true,
+                    report: 'min',
+                    optimization: 5,
+                    cleancss: true,
+                    outputSourceFiles: false
+                },
+                files: {
+                    '<%= config.dist %>/styles/main.min.css': ['<%= config.src %>/styles/main.less']
                 }
             }
         },
-        rev: {
-            dist: {
-                files: {
-                    src: [
-                        '<%= config.dist %>/scripts/{,*/}*.js',
-                        '<%= config.dist %>/styles/{,*/}*.css',
-                        '<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                        '<%= config.dist %>/fonts/*'
-                    ]
-                }
+        coffee: {
+            compile: {
+                expand: true,
+                flatten: true,
+                compile: true,
+                cwd: '<%= config.src %>/coffee/',
+                src: '**/*.coffee',
+                dest: '<%= config.src %>/scripts/',
+                ext: '.js'
+            }
+        },
+        uglify: {
+            options: {
+                report: 'min'
+            },
+            scripts: {
+                expand: true,
+                cwd: '<%= config.src %>/scripts',
+                src: '**/*.js',
+                dest: '<%= config.dist %>/scripts',
+                ext: '.min.js'
             }
         },
         imagemin: {
@@ -59,33 +88,11 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= config.app %>/images',
+                        cwd: '<%= config.src %>/images',
                         src: '{,*/}*.{png,jpg,jpeg}',
                         dest: '<%= config.dist %>/images'
                     }
                 ]
-            }
-        },
-        svgmin: {
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= config.app %>/images',
-                        src: '{,*/}*.svg',
-                        dest: '<%= config.dist %>/images'
-                    }
-                ]
-            }
-        },
-        cssmin: {
-            dist: {
-                files: {
-                    '<%= config.dist %>/styles/main.css': [
-                        '.tmp/styles/{,*/}*.css',
-                        '<%= config.app %>/styles/{,*/}*.css'
-                    ]
-                }
             }
         },
         copy: {
@@ -94,13 +101,13 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         dot: true,
-                        cwd: '<%= config.app %>',
+                        cwd: '<%= config.src %>',
                         dest: '<%= config.dist %>',
                         src: [
                             '*.{ico,txt}',
-                            'fonts/*',
-                            '.htaccess',
-                            'images/{,*/}*.{webp,gif}'
+                            'fonts/**/*',
+                            'scripts/**/*',
+                            'images/**/*'
                         ]
                     }
                 ]
@@ -108,9 +115,9 @@ module.exports = function (grunt) {
         },
         concurrent: {
             dist: [
-                'recess',
+                'less',
+                'coffee',
                 'imagemin',
-                'svgmin'
             ]
         }
     });
@@ -118,12 +125,10 @@ module.exports = function (grunt) {
     grunt.renameTask('regarde', 'watch');
 
     grunt.registerTask('build', [
-        'clean:dist',
+        'clean',
         'concurrent',
-        'cssmin',
         'uglify',
-        'copy',
-        'rev',
+        'copy'
     ]);
 
     grunt.registerTask('default', [

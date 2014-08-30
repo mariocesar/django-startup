@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
+    {% block styles %}
+        {% if debug %}
+            <link rel="stylesheet" href="{% static 'dist/styles/main.css' %}">
+        {% else %}
+            <link rel="stylesheet" href="{% static 'dist/styles/main.min.css' %}">
+        {% endif %}
+
+        <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome-ie7.min.css' %}">
+        <![endif]-->
+    {% endblock %}
 </head>
 <body>
 <header>
@@ -20,5 +33,14 @@
     </nav>
 </header>
 {% block body %}{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'vendors/jquery.min.js' %}"></script>
+
+    {% if debug %}
+        <script type="text/javascript" src="{% static 'dist/scripts/main.js' %}"></script>
+    {% else %}
+        <script type="text/javascript" src="{% static 'dist/scripts/main.min.js' %}"></script>
+    {% endif %}
+{% endblock %}
 </body>
 </html>

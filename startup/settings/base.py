@@ -89,6 +89,12 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'startup', 'templates'),
 )
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'startup', 'static'),
+)
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
